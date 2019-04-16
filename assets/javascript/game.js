@@ -1,7 +1,7 @@
 /*
 --> on click event choose character:
 character card becomes "Active", other cards become "defenders"
-those cards display = none
+those cards move to the defender position
 activeHP variable is set to characterHP value 
 change the non-active characters to "defenders"
 display "defender cards" under the Enemies section
@@ -26,16 +26,41 @@ if defender HP is 0 or less and other defenders are greater than 0
 */
 
 $('.btn').on("click", function() {
-    $('.character').addClass('active');
-    $('.character').addClass('d-none');
-    var activeHP = $(this).val();
-    console.log(activeHP);
-    alert("you clicked");
+    $(this).addClass('active');
+    $(this).removeClass('character');
+    $('.yourCharacter').append($('.active'));
+    $('.enemies').append($('.character'));
 });
-var isActive = $('.character').hasClass('.active');
-if (isActive) {
-    $('.character').appendTo('.yourCharacter')
-} else {
-    $('.character').appendTo('.')
-}
-console.log(isActive);
+
+// if ($('.yourCharacter').is(":empty") && $('.enemies').is(":empty")) {
+//     if ($('.btn').hasClass('active')) {
+//     } else {
+//         $('.btn').addClass('enemy');
+//     }
+    
+
+
+// } else if ($('.enemies').is(":empty"))  { 
+//     $('.btn').removeClass('character');
+//     $('.btn').addClass('enemy');
+
+//     $('.enemies').append($('.enemy'));
+
+// /*     $('.enemies').on("click", function() {
+//         $(this).addClass('defender');
+//         if ($('.btn').hasClass('defender')) {
+//             $('.defender').append($('.defender'));
+//         }    
+//     });   
+//  */
+// } else {
+
+// };
+// });
+
+    
+
+
+// var activeHP = $(this).val();
+// console.log(activeHP);
+

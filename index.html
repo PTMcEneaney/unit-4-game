@@ -6,19 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Die Hard RPG Game</title>
 
+    <!-- Added a link to our external reset stylesheet-->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <link href="https://fonts.googleapis.com/css?family=Offside|Open+Sans" rel="stylesheet">
+
+    <!-- Added link to the jQuery Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Added a link to Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Added a link to our external stylesheet-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-    <div class="container bg-light">
+    <div class="container bg-light mt-3">
     <h1 class="text-center">Die Hard RPG Game</h1>
-    <div class="row">
+    <div class="row mainSelection">
         <div class="card btn character" id="johnMcclane" style="width: 17rem;">
             <h5 class="card-title">John McClane</h5>
             <img class="card-img-top" src="assets/images/johnMcclane3.jpg" alt="John McClane">
@@ -50,10 +54,12 @@
           
     </div>
     <div>
-        <h2 class="yourCharacter">Your Character</h2>
+        <h2>Your Character</h2>
+        <div class="yourCharacter row"></div>
     </div>
     <div>
-        <h2 class="enemies">Enemies available to attack</h2>
+        <h2>Enemies available to attack</h2><br>
+        <div class="row enemies"></div>
     </div>
     <div>
         <h2>Fight Section</h2>
@@ -61,7 +67,10 @@
     </div>
     <div>
         <h2>Defender</h2>
+        <div class="defender row"></div>
     </div>
 </div>
+
+<script src="assets/javascript/game.js" type="text/javascript"></script>
 </body>
 </html>
