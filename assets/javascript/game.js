@@ -25,12 +25,21 @@ if defender HP is 0 or less and other defenders are greater than 0
     allows you to select the next defender 
 */
 
-$('.btn').on("click", function() {
-    $(this).addClass('active');
-    $(this).removeClass('character');
-    $('.yourCharacter').append($('.active'));
-    $('.enemies').append($('.character'));
+$('.character').on("click", function() {
+    if ($('.enemies').is(':empty')) {
+        $(this).addClass('active');
+        $(this).removeClass('character');
+        $('.yourCharacter').append($('.active'));
+        $('.enemies').append($('.character'));
+    } else if ($('.activeDefender').is(':empty')) {
+        $(this).addClass('defender');
+        $('.defender').appendTo($('.activeDefender'));
+    } else {
+
+    }
+
 });
+
 
 // if ($('.yourCharacter').is(":empty") && $('.enemies').is(":empty")) {
 //     if ($('.btn').hasClass('active')) {
