@@ -24,6 +24,8 @@ if defender HP is 0 or less and other defenders are greater than 0
     defeated defender disappears
     allows you to select the next defender 
 */
+$(document).ready(function() {
+
 
 $('.character').on("click", function() {
     if ($('.enemies').is(':empty')) {
@@ -40,15 +42,58 @@ $('.character').on("click", function() {
 
 });
 
+var characters = [
+johnMcclane = {
+    name: "John McClane",
+    image: "assets/images/johnMcclane3.jpg",
+    startingHP: 150,
+    playerAttack: 7,
+    defenderAttack: 25,
+},
+hansGruber = {
+    name: "Hans Gruber",
+    image: "assets/images/hansGruber3.jpg",
+    startingHP: 180,
+    attack: 5,
+    defenderAttack: 25,
+},
+alPowell = {
+    name: "Sgt. Al Powell",
+    image: "assets/images/alPowell3.jpg",
+    startingHP: 120,
+    attack: 9,
+    defenderAttack: 25,
+},
+toniVreski = {
+    name: "Toni Vreski",
+    image: "assets/images/tonyVreski3.png",
+    startingHP: 100,
+    attack: 11,
+    defenderAttack: 25,
+}];
 
-// if ($('.yourCharacter').is(":empty") && $('.enemies').is(":empty")) {
-//     if ($('.btn').hasClass('active')) {
-//     } else {
-//         $('.btn').addClass('enemy');
-//     }
+$(".fightBtn").on("click", function () {
+
+});
+
+/* var cards = function(character) {
+    var newCard = $('<div></div>').addClass('card btn character').attr("style", 'width: 17rem;');
+    var name = $('<h5></<h5>').text(character.name).addClass('card-title');
+    var image = $('<img/>').attr("src", character.image).addClass('card-img-top');
+    var body = $('<div></div>').addClass('card-body');
+    var text = $('<p></p>').text(character.startingHP + " HP").addClass('card-text');
+    $('.mainSelection').append(newCard);
+
+    if ($('.btn').is(':empty')) {
+        $('.btn').append(name, image, body, text);
+    }
+};
+cards(johnMcclane);
+cards(toniVreski); */
+// cards(alPowell);
+// cards(hansGruber);
+
     
-
-
 // } else if ($('.enemies').is(":empty"))  { 
 //     $('.btn').removeClass('character');
 //     $('.btn').addClass('enemy');
@@ -72,4 +117,4 @@ $('.character').on("click", function() {
 
 // var activeHP = $(this).val();
 // console.log(activeHP);
-
+});
