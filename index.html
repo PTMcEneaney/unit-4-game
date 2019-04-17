@@ -22,8 +22,44 @@
 <body>
     <div class="container bg-light mt-3 p-5">
     <h1 class="text-center">Die Hard RPG Game</h1>
+    <h2 id="instructions">Choose Your Character:</h2>
     <div class="row mainSelection">
-        <!--   <div class="card btn character" fighterNum="0" style="width: 16rem;">
+        
+          
+    </div>
+    <div class="row ">
+        <div class="col-lg-5 d-none" id="pcHeading">
+            <h2>Your Character:</h2>
+            <div class="yourCharacter mx-auto"></div>
+        </div>
+        <div class="col-lg-2 d-none" id="fightHeading">
+                <h2>Click to Fight!</h2>
+                <button class="fightBtn mx-auto">Fight</button>
+            </div>
+        <div class="col-lg-5 d-none" id="defenderHeading">
+            <h2>Defender:</h2>
+            <div class="activeDefender mx-auto"></div>
+        </div>
+    </div>
+    <div class="row d-none" id="enemyHeading">
+        <h2 id="enemyText">Choose which enemy to Attack:</h2>
+        <div class="enemies row"></div>
+    </div>
+    <div class="row d-none" id="defeatedHeading">
+            <h2 id="defeatedText">You beat these guys!</h2>
+            <div class="defeated row"></div>
+        </div>    
+    
+    
+</div>
+
+<script src="assets/javascript/game.js" type="text/javascript"></script>
+</body>
+</html>
+
+
+
+<!--   <div class="card btn character" fighterNum="0" style="width: 16rem;">
             <h5 class="card-title">John McClane</h5>
             <img class="card-img-top" src="assets/images/johnMcclane3.jpg" alt="John McClane">
             <div class="card-body">
@@ -51,27 +87,3 @@
               <p class="card-text" id="player-3">100 HP</p>
             </div>
           </div>  -->
-          
-    </div>
-    <div class="row">
-        <h2>Your Character</h2>
-        <div class="yourCharacter"></div>
-    </div>
-    <div class="row">
-        <h2>Enemies available to attack</h2><br>
-        <div class="enemies row"></div>
-    </div>
-    <div class="row">
-        <h2>Fight Section</h2>
-        <button class="fightBtn">Fight</button>
-    </div>
-    <div class="row">
-            <h2>Defender</h2>
-            <div class="activeDefender"></div>
-        </div>
-    
-</div>
-
-<script src="assets/javascript/game.js" type="text/javascript"></script>
-</body>
-</html>

@@ -26,89 +26,104 @@ if defender HP is 0 or less and other defenders are greater than 0
 */
 $(document).ready(function() {
 var activeHP = undefined;
-var pcAttack = undefined;
-var decenderHP = undefined;
+var activeAttack = undefined;
+var baseAttack = undefined;
+var defenderHP = undefined;
 var defenderAttack = undefined;
+var i;
+var j;
 
-
+/**************DEFINING CARD OBJECTS INCLUDING STATS */
 var fighter = [
 johnMcclane = {
     name: "John McClane",
     image: "assets/images/johnMcclane3.jpg",
     startingHP: 150,
-    pcAttack: 7,
+    baseAttack: 7,
     defenderAttack: 25,
-    status: undefined,
 },
 hansGruber = {
     name: "Hans Gruber",
     image: "assets/images/hansGruber3.jpg",
     startingHP: 180,
-    pcAttack: 5,
+    baseAttack: 5,
     defenderAttack: 25,
-    status: undefined,
 },
 alPowell = {
     name: "Sgt. Al Powell",
     image: "assets/images/alPowell3.jpg",
     startingHP: 120,
-    pcAttack: 9,
+    baseAttack: 9,
     defenderAttack: 25,
-    status: undefined,
 
 },
 toniVreski = {
     name: "Toni Vreski",
     image: "assets/images/tonyVreski3.png",
     startingHP: 100,
-    pcAttack: 11,
+    baseAttack: 11,
     defenderAttack: 25,
-    status: undefined,
 
 }];
 
+/***************CREATING THE FUNCTION TO CREATE AND DISPLAY CARDS BASED ON OBJECT INFO */
 var cardInit = 0;
 
 var cards = function(character) {
-    var newCard = $('<div></div>').addClass('card btn character').attr("style", 'width: 17rem;').attr("fighterNum", cardInit);
+    //GENERATING A NEW CARD DIV, ADDING A UNIQUE ATTRIBUTE 
+    var newCard = $('<div></div>').addClass('card btn character').attr("fighterNum", cardInit);
     var name = $('<h5></<h5>').text(character.name).addClass('card-title');
     var image = $('<img/>').attr("src", character.image).addClass('card-img-top');
-    var body = $('<div></div>').addClass('card-body');
-    var text = $('<p></p>').text(character.startingHP + " HP").addClass('card-text');
+    // var body = $('<div></div>').addClass('card-body');
+    var text = $('<h5></h5>').text(character.startingHP + " HP").addClass('card-text').attr("id", "player-" + cardInit);
     $('.mainSelection').append(newCard);
-    $(`[fighterNum=${cardInit}]`).append(name, image, body, text);
+    $(`[fighterNum=${cardInit}]`).append(name, image, text);
     // $('[fighterNum=cardInit]')
-
     cardInit++;
-
 };
+
+/*****************USING A LOOP TO CALL THE FUNCTION AND GENERATE THE CARDS FOR EACH OBJECT */
 for (var i = 0; i < fighter.length; i++) {
     cards(fighter[i]);
 }
 
+/****************ADDING ON-CLICK EVENTS TO CARDS AND CHANGING DISPLAY INFO*/
 $('.character').on("click", function() {
+    //CREATING A STATE SO YOU CAN ONLY CHOOSE THE ACTIVE PLAYER WHEN THE "ENEMIES" DIV IS EMPTY
     if ($('.enemies').is(':empty')) {
         $(this).addClass('active');
-        var i = this.getAttribute("fighterNum");
+
+        //HIDING/DISPLAYING TEXT AND DIVS
+        $('#instructions').addClass('d-none');
+        $('#pcHeading').removeClass('d-none');
+        $('#enemyHeading').removeClass('d-none');
+
+
+        i = this.getAttribute("fighterNum");
         activeHP = fighter[i].startingHP;
-        pcAttack = fighter[i].pcAttack;
-        fighter[i].status = "active";
-        console.log(i);
+        baseAttack = fighter[i].baseAttack;
+        activeAttack = fighter[i].baseAttack;
 
         $(this).removeClass('character');
         $('.yourCharacter').append($('.active'));
         $('.enemies').append($('.character'));
         //assigning the clicked card to pre-defined variables
-        
+    
+    // ELSE STATE ONLY ALLOWS TO CHOOSE A DEFENDER IF "ACTIVE DEFENDERS" DIV IS EMPTY    
     } else if ($('.activeDefender').is(':empty')) {
         $(this).addClass('defender');
         $('.defender').appendTo($('.activeDefender'));
-        var j = this.getAttribute("fighterNum");
+        j = this.getAttribute("fighterNum");
 
-        decenderHP = fighter[j].startingHP;
+        $('#defenderHeading').removeClass('d-none');
+        $('#fightHeading').removeClass('d-none');
+        $('#enemyText').text('Remaining enemies to fight:');
+
+
+        defenderHP = fighter[j].startingHP;
         defenderAttack = fighter[j].defenderAttack;
-        fighter[j].status = "defender";
         console.log(j);
+
 
         // console.log($('.defender').getAttribute("fighterNum"));
     }
@@ -116,8 +131,36 @@ $('.character').on("click", function() {
 });
 
 $(".fightBtn").on("click", function () {
-   
+    activeHP = activeHP - defenderAttack;
+    $('#player-' + i).text(activeHP + " HP").append("<p>You took " + defenderAttack + " damage</p>");
+    defenderHP = defenderHP - activeAttack;
+    $('#player-' + j).text(defenderHP + " HP").append("<p>You hit defender for " + activeAttack + " damage</p>");
+
+    if (activeHP <= 0 && defenderHP > 0) {
+        alert("you lose");
+    } else if (activeHP <= 0 && defenderHP <= 0) {
+        alert(" you both died");
+    } else if (activeHP > 0 && defenderHP <= 0) {
+        alert(" you beat him! choose a new defender");
+        $('.defender').addClass('d-none defeated').append($('.defeated'));
+        $('.defender').removeClass('.defender');
+        
+        /* $('.character').on("click", function() {
+            $(this).addClass('defender');
+            $('.defender').appendTo($('.activeDefender'));
+            j = this.getAttribute("fighterNum");
+            defenderHP = fighter[j].startingHP;
+            defenderAttack = fighter[j].defenderAttack;
+            console.log(j);
+        }; */
+
+
+    } else {
+        activeAttack = activeAttack * 2;
+    }
+
 });
+
 
 
 

@@ -12,5 +12,6 @@ h2 {
     background-color: green;
 }
 .card {
-    width: 17rem;
+    width: 15rem;
+    margin: 0px auto 0px auto;
 }
