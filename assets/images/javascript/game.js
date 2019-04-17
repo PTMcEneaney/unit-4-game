@@ -33,13 +33,6 @@ var defenderAttack = undefined;
 var i;
 var j;
 
-var enemyNum = -1;
-
-var attacker;
-var defender;
-
-var isGamePlaying = true;
-
 /**************DEFINING CARD OBJECTS INCLUDING STATS */
 var fighter = [
 johnMcclane = {
@@ -47,21 +40,21 @@ johnMcclane = {
     image: "assets/images/johnMcclane3.jpg",
     startingHP: 150,
     baseAttack: 7,
-    defenderAttack: 2,
+    defenderAttack: 25,
 },
 hansGruber = {
     name: "Hans Gruber",
     image: "assets/images/hansGruber3.jpg",
     startingHP: 180,
     baseAttack: 5,
-    defenderAttack: 2,
+    defenderAttack: 25,
 },
 alPowell = {
     name: "Sgt. Al Powell",
     image: "assets/images/alPowell3.jpg",
     startingHP: 120,
     baseAttack: 9,
-    defenderAttack: 2,
+    defenderAttack: 25,
 
 },
 toniVreski = {
@@ -69,9 +62,9 @@ toniVreski = {
     image: "assets/images/tonyVreski3.png",
     startingHP: 100,
     baseAttack: 11,
-    defenderAttack: 2,
+    defenderAttack: 25,
 
-}]; 
+}];
 
 /***************CREATING THE FUNCTION TO CREATE AND DISPLAY CARDS BASED ON OBJECT INFO */
 var cardInit = 0;
@@ -97,12 +90,9 @@ for (var i = 0; i < fighter.length; i++) {
 
 /****************ADDING ON-CLICK EVENTS TO CARDS AND CHANGING DISPLAY INFO*/
 $('.character').on("click", function() {
-    if (isGamePlaying) {
     //CREATING A STATE SO YOU CAN ONLY CHOOSE THE ACTIVE PLAYER WHEN THE "ENEMIES" DIV IS EMPTY
-    if ($('.enemies').is(':empty') && enemyNum <= 0) {
+    if ($('.enemies').is(':empty')) {
         $(this).addClass('active mx-auto');
-        attacker = $(this);
-        console.log(attacker);
 
         //HIDING/DISPLAYING TEXT AND DIVS
         $('#instructions').addClass('d-none');
@@ -118,17 +108,12 @@ $('.character').on("click", function() {
         $(this).removeClass('character');
         $('.yourCharacter').append($('.active'));
         $('.enemies').append($('.character'));
-
-        enemyNum = (fighter.length - 1);
-        console.log(enemyNum);
-
         
         //assigning the clicked card to pre-defined variables
     
     // ELSE STATE ONLY ALLOWS TO CHOOSE A DEFENDER IF "ACTIVE DEFENDERS" DIV IS EMPTY    
     //if ($('.activeDefender').is(':empty'))    
     } else {
-
         $(this).addClass('defender');
         $(this).addClass('active mx-auto');
 
@@ -138,8 +123,6 @@ $('.character').on("click", function() {
 
         $('#defenderHeading').removeClass('d-none');
         $('#fightHeading').removeClass('d-none');
-        $('.fightBtn').attr("disabled", false);
-
         $('#enemyText').text('Remaining enemies to fight:');
 
 
@@ -147,19 +130,9 @@ $('.character').on("click", function() {
         defenderAttack = fighter[j].defenderAttack;
         console.log(j);
 
-        defender = $(this);
-        console.log(defender);
-
-        enemyNum--;
-        console.log(enemyNum);
-        if (enemyNum <= 0) {
-            $('#enemyHeading').addClass('d-none');
-        }
-
 
         // console.log($('.defender').getAttribute("fighterNum"));
     }
-}
 
 });
 
@@ -171,26 +144,22 @@ $(".fightBtn").on("click", function () {
 
     if (activeHP <= 0 && defenderHP > 0) {
         alert("You Were Defeated!");
-        isGamePlaying = false;
     } else if (activeHP <= 0 && defenderHP <= 0) {
         alert("You Defeated Each Other");
-        isGamePlaying = false;
     } else if (activeHP > 0 && defenderHP <= 0) {
-        $('.fightBtn').attr("disabled", true);
+        alert("You beat him! choose a new defender");
+        $('.defender').addClass('d-none defeated').append($('.defeated'));
+        $('.defender').removeClass('.defender');
+        
+        /* $('.character').on("click", function() {
+            $(this).addClass('defender');
+            $('.defender').appendTo($('.activeDefender'));
+            j = this.getAttribute("fighterNum");
+            defenderHP = fighter[j].startingHP;
+            defenderAttack = fighter[j].defenderAttack;
+            console.log(j);
+        }; */
 
-        console.log(defender[0]);
-        $('.defeatedEnemy').append(defender);
-        $('#defeatedHeading').removeClass("d-none");
-        $('#defeatedHeading').off("click");
-
-        $('.defender').removeClass('defender active character');
-            if (enemyNum > 0) {
-                alert("You beat him! choose a new defender");
-
-            } else if (enemyNum <= 0) {
-                $('#defenderHeading, #fightHeading').addClass('d-none');
-                isGamePlaying = false;
-            }
 
     } else {
         activeAttack = activeAttack * 2;
@@ -225,22 +194,4 @@ $(".fightBtn").on("click", function () {
 
 // var activeHP = $(this).val();
 // console.log(activeHP);
-
-
-
-        // $('.defender').addClass('defeated');
-        // $('.defeatedEnemy').append($('defeated'));
-        // $('')
-
-
- 
-        
-        /* $('.character').on("click", function() {
-            $(this).addClass('defender');
-            $('.defender').appendTo($('.activeDefender'));
-            j = this.getAttribute("fighterNum");
-            defenderHP = fighter[j].startingHP;
-            defenderAttack = fighter[j].defenderAttack;
-            console.log(j);
-        }; */
 });
