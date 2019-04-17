@@ -15,37 +15,39 @@
     <!-- Added a link to Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:800|Anton|Days+One|Lato|Oswald|Raleway:800|Roboto" rel="stylesheet">
+
     <!-- Added a link to our external stylesheet-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 </head>
 <body>
-    <div class="container bg-light mt-3 p-5">
-    <h1 class="text-center">Die Hard RPG Game</h1>
+    <div class="container bg-dark mt-5 p-5 rounded">
+    <h1 class="text-center">CHOOSE WELL OR DIE HARD</h1>
     <h2 id="instructions">Choose Your Character:</h2>
     <div class="row mainSelection">
         
           
     </div>
-    <div class="row py-2">
+    <div class="row py-3">
         <div class="col-lg-5 d-none" id="pcHeading">
-            <h2 class="">Your Character:</h2>
+            <h2 class="text-center">Your Character:</h2>
             <div class="yourCharacter mx-auto"></div>
         </div>
         <div class="col-lg-2 d-none mx-auto my-auto" id="fightHeading">
-                <button class="btn-warning fightBtn">Click to Fight!</button>
+                <button class="btn btn-danger fightBtn">Click to Fight!</button>
                 <!-- <button class="fightBtn">Fight</button> -->
             </div>
         <div class="col-lg-5 d-none" id="defenderHeading">
-            <h2>Defender:</h2>
+            <h2 class="text-center">Defender:</h2>
             <div class="activeDefender mx-auto"></div>
         </div>
     </div>
-    <div class="row d-none py-2" id="enemyHeading">
-        <h2 id="enemyText">Choose which enemy to Attack:</h2>
+    <div class="row d-none py-3" id="enemyHeading">
+        <h2 class="text-center" id="enemyText">Choose which enemy to Attack:</h2>
         <div class="enemies row"></div>
     </div>
-    <div class="row d-none py-2" id="defeatedHeading">
+    <div class="row d-none py-3" id="defeatedHeading">
             <h2 id="defeatedText">You beat these guys!</h2>
             <div class="defeatedEnemy row"></div>
         </div>    
