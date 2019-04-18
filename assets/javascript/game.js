@@ -187,6 +187,7 @@ $(document).ready(function () {
             $('.defeatedEnemy').append(defender);
             $(defender).addClass('defeated');
             $('.defeated').removeClass('mx-auto');
+            $('.defeatedEnemy').addClass('mx-auto');
             $('#defeatedHeading').removeClass("d-none");
             $('#defeatedHeading').off("click");
 
