@@ -176,7 +176,7 @@ $(document).ready(function () {
             isGamePlaying = false;
         } else if (activeHP <= 0 && defenderHP <= 0) {
             $('#resultModal').modal('show');
-            $('#winText').text("Whelp. You both died")
+            $('#winText').text("Whelp. You both died. Try Again?")
 
 
             isGamePlaying = false;
