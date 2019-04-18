@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,48 +16,98 @@
     <!-- Added a link to Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
-    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:800|Anton|Days+One|Lato|Oswald|Raleway:800|Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:800|Anton|Days+One|Lato|Oswald|Raleway:800|Roboto"
+        rel="stylesheet">
 
     <!-- Added a link to our external stylesheet-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 </head>
+
 <body>
-    <div class="container bg-dark mt-5 p-5 rounded">
-    <h1 class="text-center">CHOOSE WELL OR DIE HARD</h1>
-    <h2 id="instructions">Choose Your Character:</h2>
-    <div class="row mainSelection">
-        
-          
-    </div>
-    <div class="row py-3">
-        <div class="col-lg-5 d-none" id="pcHeading">
-            <h2 class="text-center">Your Character:</h2>
-            <div class="yourCharacter mx-auto"></div>
+    <div class="container">
+    <div class="container bg-dark my-5 px-5 pb-5 rounded border border-light">
+        <h1 class="text-center py-4">CHOOSE WELL OR DIE HARD</h1>
+        <h2 class="pt-3" id="instructions">Choose Your Character:</h2>
+        <div class="row mainSelection">
+
+
         </div>
-        <div class="col-lg-2 d-none mx-auto my-auto" id="fightHeading">
-                <button class="btn btn-danger fightBtn">Click to Fight!</button>
+        <div class="row py-3">
+            <div class="col-lg-5 d-none" id="pcHeading">
+                <h2 class="text-center">Your Character:</h2>
+                <div class="yourCharacter mx-auto"></div>
+            </div>
+            <div class="col-lg-2 d-none mx-auto my-auto" id="fightHeading">
+                <button class="btn btn-danger fightBtn btn-block">Click to Fight!</button>
                 <!-- <button class="fightBtn">Fight</button> -->
             </div>
-        <div class="col-lg-5 d-none" id="defenderHeading">
-            <h2 class="text-center">Defender:</h2>
-            <div class="activeDefender mx-auto"></div>
+            <div class="col-lg-5 d-none" id="defenderHeading">
+                <h2 class="text-center">Defender:</h2>
+                <div class="activeDefender mx-auto"></div>
+            </div>
+        </div>
+        <div class="row d-none py-3" id="enemyHeading">
+            <h2 class="text-center" id="enemyText">Choose which enemy to Attack:</h2>
+            <div class="enemies row"></div>
+        </div>
+        <div class="row d-none py-3" id="defeatedHeading">
+            <h2 class="text-center" id="defeatedText">You beat these guys!</h2>
+            <div class="defeatedEnemy row"></div>
         </div>
     </div>
-    <div class="row d-none py-3" id="enemyHeading">
-        <h2 class="text-center" id="enemyText">Choose which enemy to Attack:</h2>
-        <div class="enemies row"></div>
+    <div class="row footer text-white bg-dark border border-light text-center rounded mx-0">
+        <div class="col-12">
+            <p class="float-left m-3"><a class="text-danger" href="https://ptmceneaney.github.io/Responsive-Portfolio/" target="_blank">Learn about the creator of this game!</a></p>
+            <p class='float-right m-3'>© 2019 Copyright</p>
+        </div>
     </div>
-    <div class="row d-none py-3" id="defeatedHeading">
-            <h2 id="defeatedText">You beat these guys!</h2>
-            <div class="defeatedEnemy row"></div>
-        </div>    
-    
-    
 </div>
+    <div class="modal bg-dark" tabindex="-1" role="dialog" id="firstModal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="nextText">You're still alive:<br>Now you have a machine gun<br>HO-HO-HO</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>                </div>
+            </div>
+        </div>
+    </div>
 
-<script src="assets/javascript/game.js" type="text/javascript"></script>
+    <div class="modal bg-dark" tabindex="-1" role="dialog" id="resultModal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="winText">YOU DEFEATED ALL THE ENEMIES!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-block" id="playAgain">Play Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="assets/javascript/game.js" type="text/javascript"></script>
+
 </body>
+
 </html>
 
 

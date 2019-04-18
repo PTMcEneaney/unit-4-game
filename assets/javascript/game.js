@@ -47,21 +47,21 @@ johnMcclane = {
     image: "assets/images/johnMcclane3.jpg",
     startingHP: 150,
     baseAttack: 7,
-    defenderAttack: 2,
+    defenderAttack: 10,
 },
 hansGruber = {
     name: "Hans Gruber",
     image: "assets/images/hansGruber3.jpg",
     startingHP: 180,
     baseAttack: 5,
-    defenderAttack: 2,
+    defenderAttack: 20,
 },
 alPowell = {
     name: "Sgt. Al Powell",
     image: "assets/images/alPowell3.jpg",
     startingHP: 120,
     baseAttack: 9,
-    defenderAttack: 2,
+    defenderAttack: 30,
 
 },
 toniVreski = {
@@ -69,7 +69,7 @@ toniVreski = {
     image: "assets/images/tonyVreski3.png",
     startingHP: 100,
     baseAttack: 11,
-    defenderAttack: 2,
+    defenderAttack: 40,
 
 }]; 
 
@@ -170,31 +170,47 @@ $(".fightBtn").on("click", function () {
     $('#player-' + j).text(defenderHP + " HP").append("<h6>You hit him for " + activeAttack + " damage</h6>");
 
     if (activeHP <= 0 && defenderHP > 0) {
-        alert("You Were Defeated!");
+        $('#resultModal').modal('show');
+        $('#winText').text("You Lost: We're gonna need some more FBI guys, I guess")
+        
         isGamePlaying = false;
     } else if (activeHP <= 0 && defenderHP <= 0) {
-        alert("You Defeated Each Other");
+        $('#resultModal').modal('show');
+        $('#winText').text("Whelp. You both died")
+
+        
         isGamePlaying = false;
     } else if (activeHP > 0 && defenderHP <= 0) {
         $('.fightBtn').attr("disabled", true);
 
         console.log(defender[0]);
         $('.defeatedEnemy').append(defender);
+        $(defender).addClass('defeated');
+        $('.defeated').removeClass('mx-auto');
         $('#defeatedHeading').removeClass("d-none");
         $('#defeatedHeading').off("click");
 
         $('.defender').removeClass('defender active character');
-            if (enemyNum > 0) {
-                alert("You beat him! choose a new defender");
+            if (enemyNum == 2) {
+                $('#firstModal').modal('show');
+
+            } else if (enemyNum == 1) {
+                $('#firstModal').modal('show');
+                $('#nextText').text('You got another one! YIPPIE-KI-YAY')
 
             } else if (enemyNum <= 0) {
                 $('#defenderHeading, #fightHeading').addClass('d-none');
                 isGamePlaying = false;
+                $('#resultModal').modal('show');
             }
 
     } else {
         activeAttack = activeAttack * 2;
     }
+
+    $('#playAgain').click( function() {
+        location.reload();
+    });
 
 });
 
