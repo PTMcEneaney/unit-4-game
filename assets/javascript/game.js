@@ -78,7 +78,7 @@ $(document).ready(function () {
 
     var cards = function (character) {
         //GENERATING A NEW CARD DIV, ADDING A UNIQUE ATTRIBUTE 
-        var newCard = $('<div></div>').addClass('card btn character').attr("fighterNum", cardInit).attr("style", "margin: 0px 10px 0px 10px;");
+        var newCard = $('<button></button>').addClass('card btn character').attr("fighterNum", cardInit).attr("style", "margin: 0px 10px 20px 10px;");
         var name = $('<h5></<h5>').text(character.name).addClass('card-title');
         var image = $('<img/>').attr("src", character.image).addClass('card-img-top');
         // var body = $('<div></div>').addClass('card-body');
@@ -95,12 +95,16 @@ $(document).ready(function () {
         cards(fighter[i]);
     }
 
+    
+
+
     /****************ADDING ON-CLICK EVENTS TO CARDS AND CHANGING DISPLAY INFO*/
     $('.character').on("click", function () {
         if (isGamePlaying) {
             //CREATING A STATE SO YOU CAN ONLY CHOOSE THE ACTIVE PLAYER WHEN THE "ENEMIES" DIV IS EMPTY
             if ($('.enemies').is(':empty') && enemyNum <= 0) {
                 $(this).addClass('active mx-auto');
+                
                 attacker = $(this);
                 console.log(attacker);
 
@@ -130,6 +134,7 @@ $(document).ready(function () {
             } else {
 
                 $(this).addClass('defender');
+                $(this).removeClass('character');
                 $(this).addClass('active mx-auto');
 
                 $('.defender').appendTo($('.activeDefender'));
@@ -156,6 +161,12 @@ $(document).ready(function () {
                     $('#enemyHeading').addClass('d-none');
                 }
 
+                /* if (!$('.yourCharacter').is(':empty') && !$('.activeDefender').is(':empty')) {
+                    ($('.character')).addClass("disabled").prop('disabled', true);
+                } else if (!$('.yourCharacter').is(':empty') && $('.activeDefender').is(':empty')) {
+                    ($('.character')).removeClass("disabled").prop("disabled", false);
+                
+                } */
 
                 // console.log($('.defender').getAttribute("fighterNum"));
             }
@@ -164,6 +175,7 @@ $(document).ready(function () {
     });
 
     $(".fightBtn").on("click", function () {
+
         activeHP = activeHP - defenderAttack;
         $('#player-' + i).text(activeHP + " HP").append("<h6>You took " + defenderAttack + " damage</h6>");
         defenderHP = defenderHP - activeAttack;
@@ -216,3 +228,4 @@ $(document).ready(function () {
     });
 
 });
+

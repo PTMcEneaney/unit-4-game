@@ -17,14 +17,10 @@ Open game in browser
 Open chrome inspector
 Check for errors
 
-###Break down into end to end tests
-Explain what these tests test and why
-
-> Give an example
-
 ##Built With
  - VS Code
  - JQuery / JavaScript
+ - Bootstrap
  - HTML
  - CSS
  - Google Chrome
@@ -37,4 +33,4 @@ Explain what these tests test and why
  - Trilogy Instructor: Jason Rosen
  - Trilogy TA's: Garret Settles & Anne Starley
  - Trilogy Tutor: Matt Tedder
- - Varsity Tutors Tutor: Alex West
+ - Central Seattle Study Group (Especially Sam Orcutt!)
